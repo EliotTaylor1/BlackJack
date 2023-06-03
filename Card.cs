@@ -52,18 +52,18 @@ namespace BlackJack
                 Rank.Rank_8 => "8",
                 Rank.Rank_9 => "9",
                 Rank.Rank_10 => "10",
-                Rank.Rank_Jack => "Jack",
-                Rank.Rank_Queen => "Queen",
-                Rank.Rank_King => "King",
-                Rank.Rank_Ace => "Ace",
+                Rank.Rank_Jack => "J",
+                Rank.Rank_Queen => "Q",
+                Rank.Rank_King => "K",
+                Rank.Rank_Ace => "A",
                 _ => "Unknown",
             };
             string cardSuit = _suit switch
             {
-                Suit.Suit_Club => "Club",
-                Suit.Suit_Spade => "Spade",
-                Suit.Suit_Heart => "Heart",
-                Suit.Suit_Diamond => "Diamond",
+                Suit.Suit_Club => "C",
+                Suit.Suit_Spade => "S",
+                Suit.Suit_Heart => "H",
+                Suit.Suit_Diamond => "D",
                 _ => "Unknown",
             };
             string card = cardRank + cardSuit;
@@ -88,6 +88,10 @@ namespace BlackJack
                 Rank.Rank_Ace => 11,
                 _ => 0,
             };
+        }
+        public override string ToString()
+        {
+            return PrintCard();
         }
     }
 }
