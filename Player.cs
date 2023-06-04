@@ -35,17 +35,18 @@ namespace BlackJack
             {
                 Console.WriteLine(card);
             }
-
+            Console.WriteLine($"Hand value: {GetHandValue()}");
         }
 
-        /*public void GetHandValue()
+        public int GetHandValue()
         {
             
             foreach (var card in hand)
             {
-                handValue += getCardValue(card);
+                handValue += card.GetCardValue();
             }
+            return handValue;
             
-        }*/
+        }
     }
 }
