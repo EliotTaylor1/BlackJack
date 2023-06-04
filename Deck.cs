@@ -34,7 +34,7 @@ namespace BlackJack
         }
         public void ShuffleDeck()
         {
-            Console.WriteLine("\nShuffling deck");
+            Console.WriteLine("Shuffling deck");
             Random random = new Random();
 
             for (int i = deck.Count - 1; i > 0; i--)
