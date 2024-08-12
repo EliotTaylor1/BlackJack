@@ -1,52 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BlackJack
+﻿public class Player
 {
-    internal class Player
+    public Hand Hand { get; private set; }
+
+    public Player()
     {
-        string playerName;
-        List<Card> hand;
-        int handValue;
-        bool isBust;
+        Hand = new Hand();
+    }
 
-        public Player(string playerName)
-        {
-            this.playerName = playerName;
-            if(hand == null)
-            {
-                hand = new List<Card>();
-            }
-        }
-
-        public void DrawCard(Deck deck)
-        {
-            hand.Add(deck.deck[deck.DeckIndex]);
-            deck.DeckIndex++;
-        }
-
-        public void PrintHand()
-        {
-            Console.WriteLine($"{playerName}'s hand: ");
-            foreach (var card in hand)
-            {
-                Console.WriteLine(card);
-            }
-            Console.WriteLine($"Hand value: {GetHandValue()}");
-        }
-
-        public int GetHandValue()
-        {
-            
-            foreach (var card in hand)
-            {
-                handValue += card.GetCardValue();
-            }
-            return handValue;
-            
-        }
+    public void DrawCard(Deck deck)
+    {
+        Hand.AddCard(deck.DrawCard());
     }
 }

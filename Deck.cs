@@ -1,49 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace BlackJack
+public class Deck
 {
-    internal class Deck
+    private List<Card> cards;
+    private static readonly string[] suits = { "Hearts", "Diamonds", "Clubs", "Spades" };
+    private static readonly string[] ranks = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace" };
+    private static readonly int[] values = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11 };
+
+    public Deck()
     {
-        public int DeckIndex { get; set; } = 0;
-        public List<Card> deck;
+        cards = new List<Card>();
 
-        public Deck() 
+        for (int i = 0; i < suits.Length; i++)
         {
-            deck = new List<Card>();
-
-            foreach (Card.Rank rank in Enum.GetValues(typeof(Card.Rank)))
+            for (int j = 0; j < ranks.Length; j++)
             {
-                foreach (Card.Suit suit in Enum.GetValues(typeof(Card.Suit)))
-                {
-                    Card card = new(rank, suit);
-                    deck.Add(card);
-                }
+                cards.Add(new Card(suits[i], ranks[j], values[j]));
             }
         }
-        public void PrintDeck()
-        {
-            foreach (Card card in deck)
-            {
-                Console.Write($"{card}, ");
-            }
-            Console.WriteLine("");
-        }
-        public void ShuffleDeck()
-        {
-            Console.WriteLine("Shuffling deck");
-            Random random = new Random();
 
-            for (int i = deck.Count - 1; i > 0; i--)
-            {
-                int j = random.Next(i + 1);
-                Card temp = deck[i];
-                deck[i] = deck[j];
-                deck[j] = temp;
-            }
-        }
+        Shuffle();
+    }
+
+    public void Shuffle()
+    {
+        Random rng = new Random();
+        cards = cards.OrderBy(a => rng.Next()).ToList();
+    }
+
+    public Card DrawCard()
+    {
+        if (cards.Count == 0) return null;
+        Card card = cards[0];
+        cards.RemoveAt(0);
+        return card;
     }
 }
